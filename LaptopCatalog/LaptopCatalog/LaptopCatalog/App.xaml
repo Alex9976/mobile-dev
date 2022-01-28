@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LaptopCatalog.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Primary">#181818</Color>
+            <Color x:Key="Accent">#202020</Color>
+            <Color x:Key="Selected">#383838</Color>
+            <Color x:Key="Additional">#373737</Color>
+            <Color x:Key="Opposite">#FFFFFF</Color>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource Opposite}"/>
+            </Style>
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="BarTextColor" Value="{StaticResource Opposite}" />
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="TextColor" Value="{StaticResource Opposite}"></Setter>
+                <Setter Property="BackgroundColor" Value="#FF9F5E"/>
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#FF9F5E" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#332196F3" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
