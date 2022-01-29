@@ -28,13 +28,28 @@ namespace LaptopCatalog.Views.Landscape
 
         private class FlyoutMainPageFlyoutViewModel : INotifyPropertyChanged
         {
+            private bool _isRefreshing;
+
             public ObservableCollection<FlyoutMainPageFlyoutMenuItem> MenuItems { get; set; }
+
+            public Command RefreshCommand { get; }
+
+            public bool IsRefreshing
+            {
+                get { return _isRefreshing; }
+                set
+                {
+                    _isRefreshing = value;
+                    OnPropertyChanged();
+                }
+            }
 
             public FlyoutMainPageFlyoutViewModel()
             {
+                RefreshCommand = new Command(Refresh);
+
                 MenuItems = new ObservableCollection<FlyoutMainPageFlyoutMenuItem>();
                 MenuItems.Add(new FlyoutMainPageFlyoutMenuItem { Id = 0, Title = "Add laptop", TargetType = "Add", Icon = "icon_add.png" });
-
 
                 var firebaseDbService = DependencyService.Get<IFirebaseDatebaseService>();
                 var laptops = firebaseDbService.GetAllLaptops();
@@ -46,6 +61,33 @@ namespace LaptopCatalog.Views.Landscape
                         MenuItems.Add(new FlyoutMainPageFlyoutMenuItem { Id = 0, Title = item.Name, Laptop = item, TargetType = "Laptop", Icon = "icon_laptops.png" });
                     }
                 }
+            }
+
+            private async void Refresh(object obj)
+            {
+                IsRefreshing = true;
+
+                var firebaseDbService = DependencyService.Get<IFirebaseDatebaseService>();
+                var laptops = firebaseDbService.GetAllLaptops();
+
+                if (laptops != null)
+                {
+                    MenuItems.Clear();
+
+                    MenuItems.Add(new FlyoutMainPageFlyoutMenuItem { Id = 0, Title = "Add laptop", TargetType = "Add", Icon = "icon_add.png" });
+
+                    if (laptops != null)
+                    {
+                        foreach (var item in laptops)
+                        {
+                            MenuItems.Add(new FlyoutMainPageFlyoutMenuItem { Id = 0, Title = item.Name, Laptop = item, TargetType = "Laptop", Icon = "icon_laptops.png" });
+                        }
+                    }
+                }
+
+                await Task.Delay(200);
+                OnPropertyChanged("MenuItems");
+                IsRefreshing = false;
             }
 
             #region INotifyPropertyChanged Implementation

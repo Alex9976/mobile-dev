@@ -4,23 +4,30 @@
              x:Class="LaptopCatalog.Views.Landscape.FlyoutMainPageFlyout"
              Title="Flyout">
     <StackLayout>
-        <ListView x:Name="MenuItemsListView"
-              SeparatorVisibility="None"
-              HasUnevenRows="true"
-              ItemsSource="{Binding MenuItems}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <StackLayout Padding="15,10" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-                            <Image Source="{Binding Icon}" WidthRequest="25" VerticalOptions="FillAndExpand"  />
-                            <Label VerticalOptions="FillAndExpand" 
+
+        <RefreshView x:Name="refreshView" IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshCommand}">
+            <StackLayout>
+                <ScrollView>
+                    <ListView x:Name="MenuItemsListView"
+                                SeparatorVisibility="None"
+                                HasUnevenRows="true"
+                                ItemsSource="{Binding MenuItems}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Padding="15,10" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                                        <Image Source="{Binding Icon}" WidthRequest="25" VerticalOptions="FillAndExpand"  />
+                                        <Label VerticalOptions="FillAndExpand" 
                                 VerticalTextAlignment="Center" 
                                     Text="{Binding Title}" 
                                     FontSize="19"/>
-                        </StackLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </ScrollView>
+            </StackLayout>
+        </RefreshView>
     </StackLayout>
 </ContentPage>
