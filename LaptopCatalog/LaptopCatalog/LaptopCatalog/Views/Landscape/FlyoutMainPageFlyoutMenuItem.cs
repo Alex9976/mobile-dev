@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LaptopCatalog.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,7 @@ namespace LaptopCatalog.Views.Landscape
         public int Id { get; set; }
         public string Title { get; set; }
 
-        public string LaptopId { get; set; }
+        public Laptop Laptop { get; set; }
 
         public string TargetType { get; set; }
         public string Icon { get; set; }

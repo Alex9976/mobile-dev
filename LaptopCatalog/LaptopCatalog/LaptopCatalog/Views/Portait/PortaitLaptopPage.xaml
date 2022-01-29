@@ -16,32 +16,50 @@
                              Source="{Binding ImageUrl}"
                              BackgroundColor="Transparent" />
                 <StackLayout Orientation="Vertical">
-                    <Label Text="Name:" HorizontalOptions="FillAndExpand" />
-                    <Label Text="{Binding Name}" HorizontalOptions="FillAndExpand" />
-              
-                    <Label Text="Description:" HorizontalOptions="FillAndExpand" />
-                    <Label Text="{Binding Description}" HorizontalOptions="FillAndExpand" />
-                    
-                    <Label Text="Type:" HorizontalOptions="FillAndExpand" />
-                    <Label Text="{Binding Type}" HorizontalOptions="FillAndExpand" />
-                    
-                    <Label Text="Processor:" HorizontalOptions="FillAndExpand" />
-                    <Label Text="{Binding ProcessorModel}" HorizontalOptions="FillAndExpand" />
-                    
-                    <Label Text="Ram size:" HorizontalOptions="FillAndExpand" />
-                    <Label Text="{Binding RamSize}" HorizontalOptions="FillAndExpand" />
-                    
-                    <Label Text="Rom size:" HorizontalOptions="FillAndExpand" />
-                    <Label Text="{Binding RomSize}" HorizontalOptions="FillAndExpand" />
-                    
-                    <Label Text="Price:" HorizontalOptions="FillAndExpand" />
-                    <Label Text="{Binding Price}" HorizontalOptions="FillAndExpand" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                        </Grid.RowDefinitions>
+                        <Label Text="Name:" Grid.Column="0" Grid.Row="0" HorizontalOptions="FillAndExpand" />
+                        <Label Text="{Binding Name}" Grid.Column="1" Grid.Row="0" HorizontalOptions="FillAndExpand" />
+
+                        <Label Text="Description:" Grid.Column="0" Grid.Row="1" HorizontalOptions="FillAndExpand" />
+                        <Label Text="{Binding Description}" Grid.Column="1" Grid.Row="1" HorizontalOptions="FillAndExpand" />
+
+                        <Label Text="Type:" Grid.Column="0" Grid.Row="2"  HorizontalOptions="FillAndExpand" />
+                        <Label Text="{Binding Type}" Grid.Column="1" Grid.Row="2" HorizontalOptions="FillAndExpand" />
+
+                        <Label Text="Processor:" Grid.Column="0" Grid.Row="3" HorizontalOptions="FillAndExpand" />
+                        <Label Text="{Binding ProcessorModel}" Grid.Column="1" Grid.Row="3" HorizontalOptions="FillAndExpand" />
+
+                        <Label Text="Ram size:" Grid.Column="0" Grid.Row="4" HorizontalOptions="FillAndExpand" />
+                        <Label Text="{Binding RamSize}" Grid.Column="1" Grid.Row="4" HorizontalOptions="FillAndExpand" />
+
+                        <Label Text="Rom size:" Grid.Column="0" Grid.Row="5" HorizontalOptions="FillAndExpand" />
+                        <Label Text="{Binding RomSize}" Grid.Column="1" Grid.Row="5" HorizontalOptions="FillAndExpand" />
+
+                        <Label Text="Price:" Grid.Column="0" Grid.Row="6" HorizontalOptions="FillAndExpand" />
+                        <Label Text="{Binding Price}" Grid.Column="1" Grid.Row="6" HorizontalOptions="FillAndExpand" />
+                        </Grid>
                 </StackLayout>
 
-                <!--<StackLayout>
-                    <xct:MediaElement Source="{Binding VideoUrl}" 
-                              ShowsPlaybackControls="True"/>
-                </StackLayout>-->
+                <StackLayout>
+                    <Label Text="Video" Margin="0, 0, 0, 20" HorizontalOptions="Center" />
+                    <xct:MediaElement x:Name="player" 
+                                      AutoPlay="False" 
+                                      Margin="-40, 0, 0, 0" 
+                                      HeightRequest="300"
+                                      ShowsPlaybackControls="True"/>
+                </StackLayout>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

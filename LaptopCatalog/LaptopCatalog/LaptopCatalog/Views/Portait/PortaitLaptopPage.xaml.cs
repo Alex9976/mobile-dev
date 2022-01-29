@@ -1,4 +1,5 @@
-﻿using LaptopCatalog.ViewModels;
+﻿using LaptopCatalog.Models;
+using LaptopCatalog.ViewModels;
 using LaptopCatalog.ViewModels.Portait;
 using System;
 using System.Collections.Generic;
@@ -14,11 +15,13 @@ namespace LaptopCatalog.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PortaitLaptopPage : ContentPage
     {
-        public PortaitLaptopPage(string id)
+        public PortaitLaptopPage(Laptop laptop)
         {
-            var viewModel = new PortaitLaptopViewModel(id);
+            var viewModel = new PortaitLaptopViewModel(laptop);
             BindingContext = viewModel;
             InitializeComponent();
+
+            player.Source = viewModel.VideoUrl;
         }
     }
 }

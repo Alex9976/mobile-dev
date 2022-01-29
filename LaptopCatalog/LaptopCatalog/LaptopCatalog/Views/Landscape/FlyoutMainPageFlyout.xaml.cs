@@ -33,7 +33,7 @@ namespace LaptopCatalog.Views.Landscape
             public FlyoutMainPageFlyoutViewModel()
             {
                 MenuItems = new ObservableCollection<FlyoutMainPageFlyoutMenuItem>();
-                MenuItems.Add(new FlyoutMainPageFlyoutMenuItem { Id = 0, Title = "Add laptop", TargetType = "Add", Icon="icon_add.png" });
+                MenuItems.Add(new FlyoutMainPageFlyoutMenuItem { Id = 0, Title = "Add laptop", TargetType = "Add", Icon = "icon_add.png" });
 
 
                 var firebaseDbService = DependencyService.Get<IFirebaseDatebaseService>();
@@ -43,7 +43,7 @@ namespace LaptopCatalog.Views.Landscape
                 {
                     foreach (var item in laptops)
                     {
-                        MenuItems.Add(new FlyoutMainPageFlyoutMenuItem { Id = 0, Title = item.Name, LaptopId = item.Id, TargetType = "Laptop", Icon = "icon_laptops.png" });
+                        MenuItems.Add(new FlyoutMainPageFlyoutMenuItem { Id = 0, Title = item.Name, Laptop = item, TargetType = "Laptop", Icon = "icon_laptops.png" });
                     }
                 }
             }

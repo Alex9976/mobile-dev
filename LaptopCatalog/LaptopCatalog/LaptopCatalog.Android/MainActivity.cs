@@ -8,12 +8,14 @@ using XamarinApp.Droid.Services;
 
 namespace LaptopCatalog.Droid
 {
-    [Activity(Label = "LaptopCatalog", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = false , ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize )]
+    [Activity(Label = "Laptop Catalog", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = false , ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize )]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+
+            Window.SetStatusBarColor(Android.Graphics.Color.ParseColor("#181818"));
 
             Xamarin.Forms.DependencyService.Register<FirebaseDatebaseService>();
             Xamarin.Forms.DependencyService.Register<FirebaseStorageService>();

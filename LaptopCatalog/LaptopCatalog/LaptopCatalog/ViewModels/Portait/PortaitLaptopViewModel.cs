@@ -11,10 +11,9 @@ namespace LaptopCatalog.ViewModels.Portait
 {
     public class PortaitLaptopViewModel : BaseViewModel
     {
-        public Laptop Laptop { get; set; }
+        private readonly string _defaultViedoName = "https://firebasestorage.googleapis.com/v0/b/laptop-catalog.appspot.com/o/videos%2Fb5c3155e-c95d-4bda-a255-e10aa1382f33.mp4?alt=media&token=c8f38dde-8f3f-49da-a10f-3eaf00f05ab7";
 
-        private readonly IFirebaseDatebaseService _firebaseDatebaseService;
-        private readonly IFirebaseStorageService _firebaseStorageService;
+        public Laptop Laptop { get; set; }
 
         public string Id { get; set; }
         public string Name { get; set; }
@@ -30,18 +29,11 @@ namespace LaptopCatalog.ViewModels.Portait
         public string VideoUrl { get; set; }
         public string VideoName { get; set; }
 
-        public ICommand ViewImage { get; }
-        public ICommand ViewVideo { get; }
-        public ICommand Save { get; }
-
-        public PortaitLaptopViewModel(string id)
+        public PortaitLaptopViewModel(Laptop laptop)
         {
-            _firebaseDatebaseService = DependencyService.Get<IFirebaseDatebaseService>();
-            _firebaseStorageService = DependencyService.Get<IFirebaseStorageService>();
+            Laptop = laptop;
 
-            Laptop = _firebaseDatebaseService.GetLaptopById(id);
-
-            Id = id;
+            Id = Laptop.Id;
             Name = Laptop.Name;
             Description = Laptop.Description;
             Type = Laptop.Type;
@@ -51,29 +43,10 @@ namespace LaptopCatalog.ViewModels.Portait
             Price = Laptop.Price.ToString(CultureInfo.InvariantCulture);
             ImageUrl = Laptop.Image.DownloadUrl;
             ImageName = Laptop.Image.FileName;
-            VideoUrl = Laptop.Video.DownloadUrl ?? "";
+            if (Laptop.Video.DownloadUrl == "")
+                Laptop.Video.DownloadUrl = _defaultViedoName;
+            VideoUrl = Laptop.Video.DownloadUrl;
             VideoName = Laptop.Video.FileName;
-
-            ViewImage = new Command(OnViewImageButtonClicked);
-            ViewVideo = new Command(OnViewVideoButtonClicked);
-        }
-
-        private async void OnViewImageButtonClicked()
-        {
-            //await Application.Current.MainPage.Navigation.PushAsync(new ViewImagePage(ImageUrl));
-        }
-
-        private async void OnViewVideoButtonClicked()
-        {
-            if (!string.IsNullOrEmpty(VideoUrl))
-            {
-                //await Application.Current.MainPage.Navigation.PushAsync(new ViewVideoPage(VideoUrl));
-            }
-            else
-            {
-                //await Application.Current.MainPage.DisplayAlert(AppContentText.NotFoundTitle,
-                //    AppContentText.VideoNotFoundMessage, AppContentText.OkButton);
-            }
         }
     }
 }

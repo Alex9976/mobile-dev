@@ -4,13 +4,14 @@ using LaptopCatalog.ViewModels.Portait;
 using LaptopCatalog.Models;
 using System.Collections.Generic;
 using System;
+using LaptopCatalog.Services;
 
 namespace LaptopCatalog.Views.Portait
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PortaitLaptopsPage : ContentPage
     {
-        public PortaitLaptopsPage(string selectedId, bool isListView)
+        public PortaitLaptopsPage(Laptop laptop, bool isListView)
         {
             var portaitLaptopsViewModel = new PortaitLaptopsViewModel(this, isListView);
             BindingContext = portaitLaptopsViewModel;
@@ -18,22 +19,17 @@ namespace LaptopCatalog.Views.Portait
             InitializeComponent();
 
             portaitLaptopsViewModel.UpdateGrid();
-
-            if (selectedId != "")
-            {
-                OpenLaptop(selectedId);
-            }
         }
 
-        private async void OpenLaptop(string id)
+        public async void OpenLaptop(Laptop laptop)
         {
-            await Navigation.PushAsync(new PortaitLaptopPage(id));
+            await Navigation.PushAsync(new PortaitLaptopPage(laptop));
         }
 
         public async void OnItemClicked(object sender, ItemTappedEventArgs e)
         {
-            MessagingCenter.Send(Application.Current.MainPage, "SetId", ((Laptop)e.Item).Id);
-            await Navigation.PushAsync(new PortaitLaptopPage(((Laptop)e.Item).Id));
+            MessagingCenter.Send(Application.Current.MainPage, "SetLaptop", (Laptop)e.Item);
+            await Navigation.PushAsync(new PortaitLaptopPage((Laptop)e.Item));
             ListOfLaptops.SelectedItem = null;
         }
 
@@ -72,8 +68,11 @@ namespace LaptopCatalog.Views.Portait
 
         private async void GridItemClicked(object sender, EventArgs e)
         {
-            MessagingCenter.Send(Application.Current.MainPage, "SetId", ((Button)sender).Text);
-            await Navigation.PushAsync(new PortaitLaptopPage(((Button)sender).Text));
+            var firebaseDatebaseService = DependencyService.Get<IFirebaseDatebaseService>();
+            var laptop = firebaseDatebaseService.GetLaptopById(((Button)sender).Text);
+
+            MessagingCenter.Send(Application.Current.MainPage, "SetLaptop", laptop);
+            await Navigation.PushAsync(new PortaitLaptopPage(laptop));
         }
 
         protected override void OnSizeAllocated(double width, double height)

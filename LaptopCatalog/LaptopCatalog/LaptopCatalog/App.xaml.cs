@@ -1,4 +1,5 @@
-﻿using LaptopCatalog.Views;
+﻿using LaptopCatalog.Models;
+using LaptopCatalog.Views;
 using LaptopCatalog.Views.Landscape;
 using LaptopCatalog.Views.Portait;
 using System;
@@ -9,7 +10,7 @@ namespace LaptopCatalog
 {
     public partial class App : Application
     {
-        private string _laptopId = "";
+        private Laptop _laptopId = null;
         private bool _listViewMode = true;
 
         public App()
@@ -20,14 +21,20 @@ namespace LaptopCatalog
             MessagingCenter.Subscribe<Page>(this, "ChangePageToLaptops",
                 (sender) =>
                 {
-                    Current.MainPage = new NavigationPage(new PortaitLaptopsPage(_laptopId, _listViewMode));
+                    var laptopPage = new PortaitLaptopsPage(_laptopId, _listViewMode);
+                    var page = new NavigationPage(laptopPage);
+                    if (_laptopId != null)
+                    {
+                        laptopPage.OpenLaptop(_laptopId);
+                    }
+                    Current.MainPage = page;
                 });
             MessagingCenter.Subscribe<Page>(this, "ChangePageToFlyout",
                (sender) =>
                {
-                   Current.MainPage = new FlyoutMainPage(_laptopId);// _flyoutPage;
-                });
-            MessagingCenter.Subscribe<Page, string>(this, "SetId",
+                   Current.MainPage = new FlyoutMainPage(_laptopId);
+               });
+            MessagingCenter.Subscribe<Page, Laptop>(this, "SetLaptop",
                (sender, args) =>
                {
                    _laptopId = args;

@@ -1,4 +1,5 @@
-﻿using LaptopCatalog.Services;
+﻿using LaptopCatalog.Models;
+using LaptopCatalog.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,17 +14,14 @@ namespace LaptopCatalog.Views.Landscape
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FlyoutMainPage : FlyoutPage
     {
-        public FlyoutMainPage(string laptopId)
+        public FlyoutMainPage(Laptop laptop)
         {
             InitializeComponent();
             FlyoutPage.ListView.ItemSelected += ListView_ItemSelected;
 
-            if (laptopId != "")
+            if (laptop != null)
             {
-                var firebaseDatebaseService = DependencyService.Get<IFirebaseDatebaseService>();
-
-                var laptop = firebaseDatebaseService.GetLaptopById(laptopId);
-                var page = new LandscapeLaptopPage(laptopId);
+                var page = new LandscapeLaptopPage(laptop);
                 Detail = new NavigationPage(page);
                 IsPresented = false;
                 page.Title = laptop.Name;
@@ -39,8 +37,8 @@ namespace LaptopCatalog.Views.Landscape
             var page = new Page();
             if (item.TargetType == "Laptop")
             {
-                page = new LandscapeLaptopPage(item.LaptopId);
-                MessagingCenter.Send(Application.Current.MainPage, "SetId", item.LaptopId);
+                page = new LandscapeLaptopPage(item.Laptop);
+                MessagingCenter.Send(Application.Current.MainPage, "SetLaptop", item.Laptop);
             }
             if (item.TargetType == "Add")
             {

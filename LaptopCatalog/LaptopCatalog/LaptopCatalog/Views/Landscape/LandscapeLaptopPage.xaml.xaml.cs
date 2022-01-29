@@ -1,4 +1,5 @@
-﻿using LaptopCatalog.ViewModels.Landscape;
+﻿using LaptopCatalog.Models;
+using LaptopCatalog.ViewModels.Landscape;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +14,13 @@ namespace LaptopCatalog.Views.Landscape
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LandscapeLaptopPage : ContentPage
     {
-        public LandscapeLaptopPage(string id)
+        public LandscapeLaptopPage(Laptop laptop)
         {
-            var viewModel = new LandscapeLaptopViewModel(id);
+            var viewModel = new LandscapeLaptopViewModel(laptop);
             BindingContext = viewModel;
             InitializeComponent();
+
+            player.Source = viewModel.VideoUrl;          
         }
     }
 }
