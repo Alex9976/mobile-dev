@@ -1,9 +1,13 @@
 import 'package:carapp/page/cars.dart';
 import 'package:carapp/page/map.dart';
 import 'package:carapp/page/settings.dart';
+import 'package:carapp/services/FirebaseService.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
+
+import 'globals/AppData.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, required this.title}) : super(key: key);
@@ -15,7 +19,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   final List<Widget> screens = [
     const CarPage(),
     const MapPage(),
@@ -32,22 +35,28 @@ class _HomePageState extends State<HomePage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    FirebaseService.initFirebase();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+        const SystemUiOverlayStyle(statusBarColor: Colors.blue));
+
     return Scaffold(
       body: PageStorage(
         child: currentScreen,
         bucket: bucket,
       ),
       bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-            color: Colors.white,
-            boxShadow: [
-              BoxShadow(
-                blurRadius: 20,
-                color: Colors.black.withOpacity(.1),
-              )
-            ]
-        ),
+        decoration: BoxDecoration(color: Colors.white, boxShadow: [
+          BoxShadow(
+            blurRadius: 20,
+            color: Colors.black.withOpacity(.1),
+          )
+        ]),
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
@@ -74,13 +83,13 @@ class _HomePageState extends State<HomePage> {
                   text: "Settings",
                 ),
               ],
-              onTabChange: (index){
+              onTabChange: (index) {
                 _changePage(index);
               },
             ),
           ),
         ),
-      ),// This trailing comma makes auto-formatting nicer for build methods.
+      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

@@ -10,9 +10,8 @@ class MapPage extends StatefulWidget {
 class _MapPageState extends State<MapPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Map")),
-      body: const Center(
+    return const Scaffold(
+      body: Center(
         child: Text("Map page", style: TextStyle(fontSize: 40)),
       ),
     );
