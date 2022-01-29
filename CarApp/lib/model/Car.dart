@@ -7,5 +7,5 @@ class Car {
   final Location location;
   final Weather weather;
 
-  Car(this.name, this.imagePath, this.location, this.weather);
+  Car({required this.name, required this.imagePath, required this.location, required this.weather});
 }
