@@ -1,5 +1,5 @@
 import 'package:carapp/constants/Languages.dart';
-import 'package:carapp/services/LanguageService.dart';
+import 'package:carapp/services/TextService.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
@@ -15,10 +15,9 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   List<String> languages = Languages.languages.map((e) => e.value).toList();
   String selectValue =
-      Languages.languageValue[LanguageService().locale.languageCode].toString();
+      Languages.languageValue[TextService().locale.languageCode].toString();
 
   Color pickerColor = Colors.black;
-  Color currentColor = Colors.black;
 
   void changeColor(Color color) {
     setState(() => pickerColor = color);
@@ -28,11 +27,13 @@ class _SettingsPageState extends State<SettingsPage> {
     showDialog(
         context: context,
         builder: (context) {
+          final fontProvider = Provider.of<TextService>(context);
+
           return AlertDialog(
-            title: Text('Pick a color!', style: TextStyle(color: pickerColor)),
+            title: Text('Pick a color!'),
             content: SingleChildScrollView(
               child: BlockPicker(
-                pickerColor: currentColor,
+                pickerColor: fontProvider.fontColor,
                 onColorChanged: changeColor,
               ),
             ),
@@ -40,7 +41,7 @@ class _SettingsPageState extends State<SettingsPage> {
               ElevatedButton(
                 child: const Text('Got it'),
                 onPressed: () {
-                  setState(() => currentColor = pickerColor);
+                  fontProvider.setFontColor(pickerColor);
                   Navigator.of(context).pop();
                 },
               ),
@@ -51,7 +52,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<LanguageService>(context);
+    final provider = Provider.of<TextService>(context);
     final locale = provider.locale;
     selectValue = Languages.languageValue[locale.languageCode].toString();
 
@@ -86,7 +87,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     setState(() {
                       selectValue = value as String;
                       final provider =
-                          Provider.of<LanguageService>(context, listen: false);
+                          Provider.of<TextService>(context, listen: false);
                       final locale =
                           Locale(Languages.languageCode[value] ?? 'en');
                       provider.setLocale(locale);
@@ -103,7 +104,20 @@ class _SettingsPageState extends State<SettingsPage> {
                 _showDialog();
               },
               child: Text('Show Simple Dialog',
-                  style: TextStyle(color: currentColor)),
+                  style: TextStyle(
+                  fontSize: provider.fontSize, color: provider.fontColor)),
+            ),
+            Slider(
+              value: provider.fontSize,
+              max: 21,
+              min: 10,
+              divisions: 10,
+              label: provider.fontSize.round().toString(),
+              onChanged: (double value) {
+                setState(() {
+                  provider.setFontSize(value);
+                });
+              },
             )
           ],
         ),

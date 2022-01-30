@@ -1,11 +1,9 @@
 import 'package:carapp/app_localizations.dart';
 import 'package:carapp/constants/Languages.dart';
-import 'package:carapp/services/LanguageService.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
+import 'package:carapp/services/TextService.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'constants/AppData.dart';
+import 'services/DataService.dart';
 import 'home.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -13,7 +11,7 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => AppData()),
+        ChangeNotifierProvider(create: (_) => DataService()),
       ],
       child: const MyApp(),
     ),
@@ -26,9 +24,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) =>
       ChangeNotifierProvider(
-          create: (context) => LanguageService(),
+          create: (context) => TextService(),
           builder: (context, child) {
-            final provider = Provider.of<LanguageService>(context);
+            final languageProvider = Provider.of<TextService>(context);
 
             return MaterialApp(
               title: 'Car App',
@@ -44,8 +42,8 @@ class MyApp extends StatelessWidget {
               ],
               supportedLocales: Languages.languages.map((e) => Locale(e.code))
                   .toList(),
-              locale: provider.locale,
-              home: const HomePage(title: 'Home'),
+              locale: languageProvider.locale,
+              home: const HomePage(),
             );
           }
       );

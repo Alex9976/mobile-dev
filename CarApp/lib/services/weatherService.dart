@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:carapp/model/Location.dart';
 import 'package:carapp/model/Weather.dart';
 import 'package:http/http.dart' as http;
@@ -27,5 +28,3 @@ class WeatherService {
     return weather;
   }
 }
-
-

@@ -1,12 +1,14 @@
 import 'dart:io';
 
-import 'package:carapp/constants/AppData.dart';
 import 'package:carapp/constants/LanguageConstants.dart';
 import 'package:carapp/extensions/string_extensions.dart';
+import 'package:carapp/services/DataService.dart';
 import 'package:carapp/services/FirebaseService.dart';
+import 'package:carapp/services/TextService.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 
 class AddCarPage extends StatefulWidget {
   const AddCarPage({Key? key}) : super(key: key);
@@ -16,17 +18,20 @@ class AddCarPage extends StatefulWidget {
 }
 
 class _AddCarPageState extends State<AddCarPage> {
-  AppData appData = AppData();
+  DataService appData = DataService();
 
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
+    final fontProvider = Provider.of<TextService>(context);
+
     return Scaffold(
-      appBar: AppBar(title: Text(LanguageConstants.addCarTitle.t(context))),
+      appBar: AppBar(
+          title: Text(
+        LanguageConstants.addCarTitle.t(context),
+        style: TextStyle(
+            fontSize: fontProvider.fontSize),
+      )),
       body: Container(
         padding: const EdgeInsets.all(20),
         child: const MyStatefulWidget(),
@@ -60,12 +65,16 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final fontProvider = Provider.of<TextService>(context);
+
     return Form(
       key: _formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           TextFormField(
+            style: TextStyle(
+                fontSize: fontProvider.fontSize, color: fontProvider.fontColor),
             decoration: InputDecoration(
               hintText: LanguageConstants.enterCarName.t(context),
             ),
@@ -79,6 +88,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           ),
           const Padding(padding: EdgeInsets.all(5)),
           TextFormField(
+            style: TextStyle(
+                fontSize: fontProvider.fontSize, color: fontProvider.fontColor),
             decoration: InputDecoration(
               hintText: LanguageConstants.enterCarLat.t(context),
             ),
@@ -95,6 +106,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           ),
           const Padding(padding: EdgeInsets.all(5)),
           TextFormField(
+            style: TextStyle(
+                fontSize: fontProvider.fontSize, color: fontProvider.fontColor),
             decoration: InputDecoration(
               hintText: LanguageConstants.enterCarLon.t(context),
             ),
@@ -116,7 +129,12 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 textColor: Colors.white,
                 color: Colors.blue,
                 onPressed: () => pickImage(),
-                child: Text(LanguageConstants.selectImg.t(context)),
+                child: Text(
+                  LanguageConstants.selectImg.t(context),
+                  style: TextStyle(
+                      fontSize: fontProvider.fontSize,
+                      color: fontProvider.fontColor),
+                ),
               ),
             ),
           ),
@@ -135,12 +153,18 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                         backgroundColor: Colors.grey[200],
                       );
                     } else {
-                      FirebaseService.addNewCar(name, latitude, longitude, image as File);
+                      FirebaseService.addNewCar(
+                          name, latitude, longitude, image as File);
                       Navigator.pop(context);
                     }
                   }
                 },
-                child: Text(LanguageConstants.submit.t(context)),
+                child: Text(
+                  LanguageConstants.submit.t(context),
+                  style: TextStyle(
+                      fontSize: fontProvider.fontSize,
+                      color: fontProvider.fontColor),
+                ),
               ),
             ),
           ),

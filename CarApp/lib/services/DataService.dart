@@ -4,10 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../model/Car.dart';
-import 'Languages.dart';
 
-class AppData with ChangeNotifier {
-  static final AppData _singleton = AppData._internal();
+class DataService with ChangeNotifier {
+  static final DataService _singleton = DataService._internal();
   static List<Car> _cars = <Car>[];
 
   static CameraPosition cameraPosition = const CameraPosition(
@@ -27,18 +26,18 @@ class AppData with ChangeNotifier {
       String snippet =
           '${car.location.latitude}, ${car.location.longitude}, ${car.weather.temp} ℃';
       markers.add(Marker(
-          markerId: MarkerId('origin'),
+          markerId: const MarkerId('origin'),
           infoWindow: InfoWindow(title: title, snippet: snippet),
           position: position));
     }
     return markers;
   }
 
-  factory AppData() {
+  factory DataService() {
     return _singleton;
   }
 
-  AppData._internal();
+  DataService._internal();
 
   void updateCarList() async {
     List<Car> cars = await FirebaseService.getCars();
