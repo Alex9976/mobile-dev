@@ -13,7 +13,7 @@ class WeatherService {
   WeatherService._internal();
 
   static Future<Weather> getWeather(Location location) async {
-    Weather weather = Weather(temp: 0, description: "", icon: "");
+    Weather weather = Weather.empty();
     String latitude = location.latitude.toString();
     String longitude = location.longitude.toString();
     String apiKey = '94dc1074110348afc7eaa29770732d95';

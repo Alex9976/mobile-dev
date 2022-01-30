@@ -398,3 +398,4 @@ FodyWeavers.xsd
 *.sln.iml
 
 google-services.json
+CarApp/android/app/src/main/AndroidManifest.xml
