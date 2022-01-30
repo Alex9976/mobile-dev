@@ -35,6 +35,7 @@ dev_dependencies:
   google_maps_flutter: ^2.1.1
   dropdown_button2: ^1.1.1
   flutter_colorpicker: ^1.0.3
+  shared_preferences: ^2.0.12
   flutter_localizations:
     sdk: flutter
 
