@@ -1,5 +1,7 @@
-import 'package:carapp/globals/AppData.dart';
-import 'package:carapp/page/addCar.dart';
+import 'package:carapp/constants/AppData.dart';
+import 'package:carapp/constants/LanguageConstants.dart';
+import 'package:carapp/extensions/string_extensions.dart';
+import 'package:carapp/page/add_сar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -17,7 +19,7 @@ class _CarPageState extends State<CarPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Car list"),
+        title: Text(LanguageConstants.carPageTitle.t(context)),
         actions: <Widget>[
           Padding(
               padding: const EdgeInsets.only(right: 20.0),
@@ -45,11 +47,11 @@ class _CarPageState extends State<CarPage> {
                   children: [
                     const Padding(padding: EdgeInsets.only(left: 10)),
                     Container(
-                      width: 200,
+                      width: 160,
                       child: Image.network(cars[index].imagePath),
                     ),
                     Container(
-                      width: 180,
+                      width: 220,
                       padding: const EdgeInsets.only(
                           left: 10, right: 0, top: 0, bottom: 0),
                       child: Column(
@@ -60,23 +62,24 @@ class _CarPageState extends State<CarPage> {
                           const Padding(
                               padding: EdgeInsets.only(
                                   left: 0, right: 0, top: 10, bottom: 0)),
-                          Text("Latitude: ${cars[index].location.latitude}"),
-                          Text("Longitude: ${cars[index].location.longitude}"),
-                          Row(
-                            children: [
-                              Text("${cars[index].weather.temp.toString()} ℃"),
-                              const Padding(
-                                  padding: EdgeInsets.only(
-                                      left: 0, right: 10, top: 0, bottom: 0)),
-                              Center(
-                                  child: Text(cars[index].weather.description)),
-                              Container(
-                                width: 50,
-                                padding: const EdgeInsets.all(2),
-                                child: Image.network(
-                                    "http://openweathermap.org/img/wn/${cars[index].weather.icon}.png"),
-                              ),
-                            ],
+                          Text("${LanguageConstants.latLabel.t(context)}: ${cars[index].location.latitude}"),
+                          Text("${LanguageConstants.lonLabel.t(context)}: ${cars[index].location.longitude}"),
+                          Visibility(
+                            child: Row(
+                              children: [
+                                Text("${cars[index].weather.temp.toString()} ℃"),
+                                const Padding(
+                                    padding: EdgeInsets.only(
+                                        left: 0, right: 10, top: 0, bottom: 0)),
+                                Container(
+                                  width: 50,
+                                  padding: const EdgeInsets.all(2),
+                                  child: Image.network(
+                                      "http://openweathermap.org/img/wn/${cars[index].weather.icon}.png"),
+                                ),
+                              ],
+                            ),
+                            visible: cars[index].isWeatherLogged,
                           ),
                         ],
                       ),

@@ -1,3 +1,4 @@
+import 'package:carapp/extensions/string_extensions.dart';
 import 'package:carapp/page/cars.dart';
 import 'package:carapp/page/map.dart';
 import 'package:carapp/page/settings.dart';
@@ -6,8 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
-
-import 'globals/AppData.dart';
+import 'constants/LanguageConstants.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, required this.title}) : super(key: key);
@@ -69,18 +69,18 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
               duration: const Duration(milliseconds: 400),
               tabBackgroundColor: Colors.grey[100]!,
-              tabs: const [
+              tabs: [
                 GButton(
                   icon: LineIcons.car,
-                  text: "Cars",
+                  text: LanguageConstants.carsTabButton.t(context),
                 ),
                 GButton(
                   icon: LineIcons.map,
-                  text: "Map",
+                  text: LanguageConstants.mapTabButton.t(context),
                 ),
                 GButton(
                   icon: LineIcons.cog,
-                  text: "Settings",
+                  text: LanguageConstants.settingsTabButton.t(context),
                 ),
               ],
               onTabChange: (index) {

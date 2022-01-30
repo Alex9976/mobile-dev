@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:carapp/globals/AppData.dart';
+import 'package:carapp/constants/AppData.dart';
 import 'package:carapp/model/Car.dart';
 import 'package:carapp/model/Location.dart';
 import 'package:carapp/model/Weather.dart';

@@ -1,0 +1,19 @@
+{
+  "carsTabButton": "Автомобили",
+  "mapTabButton": "Карта",
+  "settingsTabButton": "Настройки",
+  "carPageTitle": "Список",
+  "latLabel": "Широта",
+  "lonLabel": "Долгота",
+  "addCarTitle": "Добавить авто",
+  "enterCarName": "Введите имя",
+  "enterCarLat": "Введите широту",
+  "enterCarLon": "Введите долготу",
+  "selectImg": "Выберите изображение",
+  "submit": "Подтвердить",
+  "enterCarNameError": "Введите имя",
+  "enterCarLatError": "Введите широту",
+  "enterCarLonError": "Введите долготу",
+  "enterCarLatLonNumError": "Введите корректное число",
+  "selectImgError": "Выберите изображение"
+}

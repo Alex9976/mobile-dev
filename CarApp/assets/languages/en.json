@@ -1,0 +1,19 @@
+{
+  "carsTabButton": "Cars",
+  "mapTabButton": "Map",
+  "settingsTabButton": "Settings",
+  "carPageTitle": "Car list",
+  "latLabel": "Latitude",
+  "lonLabel": "Longitude",
+  "addCarTitle": "Add car",
+  "enterCarName": "Enter car name",
+  "enterCarLat": "Enter car latitude",
+  "enterCarLon": "Enter car longitude",
+  "selectImg": "Select Image",
+  "submit": "Submit",
+  "enterCarNameError": "Please enter name",
+  "enterCarLatError": "Please enter latitude",
+  "enterCarLonError": "Please enter longitude",
+  "enterCarLatLonNumError": "Please enter number",
+  "selectImgError": "Select Image"
+}

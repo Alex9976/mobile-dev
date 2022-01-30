@@ -4,10 +4,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../model/Car.dart';
+import 'Languages.dart';
 
 class AppData with ChangeNotifier {
   static final AppData _singleton = AppData._internal();
   static List<Car> _cars = <Car>[];
+
+  static CameraPosition cameraPosition = const CameraPosition(
+    target: LatLng(40, 20),
+    zoom: 1,
+  );
 
   List<Car> get cars => _cars;
 

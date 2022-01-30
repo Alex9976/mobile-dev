@@ -1,6 +1,8 @@
 import 'dart:io';
 
-import 'package:carapp/globals/AppData.dart';
+import 'package:carapp/constants/AppData.dart';
+import 'package:carapp/constants/LanguageConstants.dart';
+import 'package:carapp/extensions/string_extensions.dart';
 import 'package:carapp/services/FirebaseService.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -24,7 +26,7 @@ class _AddCarPageState extends State<AddCarPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Add Car")),
+      appBar: AppBar(title: Text(LanguageConstants.addCarTitle.t(context))),
       body: Container(
         padding: const EdgeInsets.all(20),
         child: const MyStatefulWidget(),
@@ -64,12 +66,12 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           TextFormField(
-            decoration: const InputDecoration(
-              hintText: 'Enter car name',
+            decoration: InputDecoration(
+              hintText: LanguageConstants.enterCarName.t(context),
             ),
             validator: (String? value) {
               if (value == null || value.isEmpty) {
-                return 'Please enter name';
+                return LanguageConstants.enterCarNameError.t(context);
               }
               name = value;
               return null;
@@ -77,15 +79,15 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           ),
           const Padding(padding: EdgeInsets.all(5)),
           TextFormField(
-            decoration: const InputDecoration(
-              hintText: 'Enter car latitude',
+            decoration: InputDecoration(
+              hintText: LanguageConstants.enterCarLat.t(context),
             ),
             validator: (String? value) {
               if (value == null || value.isEmpty) {
-                return 'Please enter latitude';
+                return LanguageConstants.enterCarLatError.t(context);
               }
               if (double.tryParse(value) == null) {
-                return 'Please enter number';
+                return LanguageConstants.enterCarLatLonNumError.t(context);
               }
               latitude = double.tryParse(value)!;
               return null;
@@ -93,15 +95,15 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           ),
           const Padding(padding: EdgeInsets.all(5)),
           TextFormField(
-            decoration: const InputDecoration(
-              hintText: 'Enter car longitude',
+            decoration: InputDecoration(
+              hintText: LanguageConstants.enterCarLon.t(context),
             ),
             validator: (String? value) {
               if (value == null || value.isEmpty) {
-                return 'Please enter longitude';
+                return LanguageConstants.enterCarLonError.t(context);
               }
               if (double.tryParse(value) == null) {
-                return 'Please enter number';
+                return LanguageConstants.enterCarLatLonNumError.t(context);
               }
               longitude = double.tryParse(value)!;
               return null;
@@ -109,12 +111,12 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           ),
           Center(
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10),
+              padding: const EdgeInsets.only(top: 20),
               child: MaterialButton(
                 textColor: Colors.white,
-                color: Colors.pink,
+                color: Colors.blue,
                 onPressed: () => pickImage(),
-                child: Text("Select Image"),
+                child: Text(LanguageConstants.selectImg.t(context)),
               ),
             ),
           ),
@@ -126,7 +128,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   if (_formKey.currentState!.validate()) {
                     if (image == null) {
                       Fluttertoast.showToast(
-                        msg: "Select image",
+                        msg: LanguageConstants.enterCarLat.t(context),
                         toastLength: Toast.LENGTH_SHORT,
                         textColor: Colors.black,
                         fontSize: 16,
@@ -138,7 +140,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                     }
                   }
                 },
-                child: const Text('Submit'),
+                child: Text(LanguageConstants.submit.t(context)),
               ),
             ),
           ),

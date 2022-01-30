@@ -5,6 +5,7 @@ class Car {
   final String name;
   final String imagePath;
   final Location location;
+  get isWeatherLogged => weather.description != "";
   Weather weather;
 
   Car(
