@@ -1,4 +1,7 @@
+import 'package:carapp/constants/LanguageConstants.dart';
 import 'package:carapp/constants/Languages.dart';
+import 'package:carapp/extensions/string_extensions.dart';
+import 'package:carapp/services/DataService.dart';
 import 'package:carapp/services/TextService.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
@@ -30,16 +33,30 @@ class _SettingsPageState extends State<SettingsPage> {
           final fontProvider = Provider.of<TextService>(context);
 
           return AlertDialog(
-            title: Text('Pick a color!'),
+            title: Text(LanguageConstants.colorPickerHeader.t(context),
+                style: TextStyle(
+                    fontSize: fontProvider.fontSize,
+                    color: fontProvider.fontColor)),
             content: SingleChildScrollView(
-              child: BlockPicker(
+              child:
+                  /*ColorPicker(
+              pickerColor: pickerColor,
+              onColorChanged: changeColor,
+            ),  */
+                  BlockPicker(
                 pickerColor: fontProvider.fontColor,
                 onColorChanged: changeColor,
               ),
             ),
             actions: <Widget>[
               ElevatedButton(
-                child: const Text('Got it'),
+                style:
+                    ElevatedButton.styleFrom(primary: DataService.primaryColor),
+                child: Text(
+                  LanguageConstants.colorPickerSelect.t(context),
+                  style: TextStyle(
+                      fontSize: fontProvider.fontSize, color: Colors.white),
+                ),
                 onPressed: () {
                   fontProvider.setFontColor(pickerColor);
                   Navigator.of(context).pop();
@@ -60,65 +77,117 @@ class _SettingsPageState extends State<SettingsPage> {
       body: Center(
         child: Column(
           children: [
-            Padding(padding: EdgeInsets.only(top: 40)),
-            Center(
-              child: DropdownButtonHideUnderline(
-                child: DropdownButton2(
-                  hint: Text(
-                    'Select Item',
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Theme.of(context).hintColor,
+            const Padding(padding: EdgeInsets.only(top: 60)),
+            SizedBox(
+              width: 270,
+              child: Center(
+                child: Row(
+                  children: [
+                    Text(LanguageConstants.languageTitle.t(context),
+                        style: TextStyle(
+                            fontSize: provider.fontSize,
+                            color: provider.fontColor)),
+                    const Spacer(),
+                    DropdownButtonHideUnderline(
+                      child: DropdownButton2(
+                        hint: Text(
+                          LanguageConstants.languageTitle.t(context),
+                          style: TextStyle(
+                              fontSize: provider.fontSize,
+                              color: provider.fontColor),
+                        ),
+                        items: languages
+                            .map((item) => DropdownMenuItem<String>(
+                                  value: item,
+                                  child: Text(
+                                    item,
+                                    style: TextStyle(
+                                        fontSize: provider.fontSize,
+                                        color: provider.fontColor),
+                                  ),
+                                ))
+                            .toList(),
+                        value: selectValue,
+                        onChanged: (value) {
+                          setState(() {
+                            selectValue = value as String;
+                            final provider = Provider.of<TextService>(context,
+                                listen: false);
+                            final locale =
+                                Locale(Languages.languageCode[value] ?? 'en');
+                            provider.setLocale(locale);
+                          });
+                        },
+                        buttonHeight: 40,
+                        buttonWidth: 140,
+                        itemHeight: 40,
+                      ),
                     ),
-                  ),
-                  items: languages
-                      .map((item) => DropdownMenuItem<String>(
-                            value: item,
-                            child: Text(
-                              item,
-                              style: const TextStyle(
-                                fontSize: 14,
-                              ),
-                            ),
-                          ))
-                      .toList(),
-                  value: selectValue,
-                  onChanged: (value) {
-                    setState(() {
-                      selectValue = value as String;
-                      final provider =
-                          Provider.of<TextService>(context, listen: false);
-                      final locale =
-                          Locale(Languages.languageCode[value] ?? 'en');
-                      provider.setLocale(locale);
-                    });
-                  },
-                  buttonHeight: 40,
-                  buttonWidth: 140,
-                  itemHeight: 40,
+                  ],
                 ),
               ),
             ),
-            ElevatedButton(
-              onPressed: () {
-                _showDialog();
-              },
-              child: Text('Show Simple Dialog',
-                  style: TextStyle(
-                  fontSize: provider.fontSize, color: provider.fontColor)),
+            SizedBox(
+              width: 270,
+              child: Center(
+                child: Row(
+                  children: [
+                    Text(LanguageConstants.colorTitle.t(context),
+                        style: TextStyle(
+                            fontSize: provider.fontSize,
+                            color: provider.fontColor)),
+                    const Spacer(),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          primary: DataService.primaryColor),
+                      onPressed: () {
+                        _showDialog();
+                      },
+                      child: Text(LanguageConstants.colorPickTitle.t(context),
+                          style: TextStyle(
+                              fontSize: provider.fontSize,
+                              color: Colors.white)),
+                    ),
+                  ],
+                ),
+              ),
             ),
-            Slider(
-              value: provider.fontSize,
-              max: 21,
-              min: 10,
-              divisions: 10,
-              label: provider.fontSize.round().toString(),
-              onChanged: (double value) {
-                setState(() {
-                  provider.setFontSize(value);
-                });
-              },
-            )
+            const Padding(padding: EdgeInsets.only(top: 20)),
+            SizedBox(
+              child: Center(
+                child: Column(
+                  children: [
+                    Text(LanguageConstants.fontSizeTitle.t(context),
+                        style: TextStyle(
+                            fontSize: provider.fontSize,
+                            color: provider.fontColor)),
+                    Slider(
+                      activeColor: DataService.primaryColor,
+                      value: provider.fontSize,
+                      max: 21,
+                      min: 10,
+                      divisions: 11,
+                      label: provider.fontSize.round().toString(),
+                      onChanged: (double value) {
+                        setState(() {
+                          provider.setFontSize(value);
+                        });
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            MaterialButton(
+              textColor: Colors.white,
+              color: DataService.primaryColor,
+              onPressed: () => { provider.setDefaults() },
+              child: Text(
+                LanguageConstants.setDefaults.t(context),
+                style: TextStyle(
+                    fontSize: provider.fontSize, color: Colors.white),
+              ),
+            ),
           ],
         ),
       ),

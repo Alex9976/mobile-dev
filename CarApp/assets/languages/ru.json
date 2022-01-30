@@ -15,5 +15,12 @@
   "enterCarLatError": "Введите широту",
   "enterCarLonError": "Введите долготу",
   "enterCarLatLonNumError": "Введите корректное число",
-  "selectImgError": "Выберите изображение"
+  "selectImgError": "Выберите изображение",
+  "languageTitle": "Язык",
+  "colorTitle": "Цвет текста",
+  "colorPickTitle": "Выбрать",
+  "colorPickerHeader": "Выберите цвет",
+  "colorPickerSelect": "Выбрать",
+  "fontSizeTitle": "Размер текста",
+  "setDefaults": "Сбросить настройки"
 }

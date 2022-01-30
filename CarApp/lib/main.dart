@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
               title: 'Car App',
               debugShowCheckedModeBanner: false,
               theme: ThemeData(
-                primarySwatch: Colors.blue,
+                primarySwatch: Colors.deepOrange,
               ),
               localizationsDelegates: const [
                 AppLocalizations.delegate,

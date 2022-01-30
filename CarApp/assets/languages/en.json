@@ -15,5 +15,12 @@
   "enterCarLatError": "Please enter latitude",
   "enterCarLonError": "Please enter longitude",
   "enterCarLatLonNumError": "Please enter number",
-  "selectImgError": "Select Image"
+  "selectImgError": "Select Image",
+  "languageTitle": "Language",
+  "colorTitle": "Font color",
+  "colorPickTitle": "Pick",
+  "colorPickerHeader": "Pick a color",
+  "colorPickerSelect": "Select",
+  "fontSizeTitle": "Font size",
+  "setDefaults": "Reset settings"
 }

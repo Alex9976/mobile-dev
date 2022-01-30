@@ -18,4 +18,11 @@ class LanguageConstants {
   static const String enterCarLonError = 'enterCarLonError';
   static const String enterCarLatLonNumError = 'enterCarLatLonNumError';
   static const String selectImgError = 'selectImgError';
+  static const String languageTitle = 'languageTitle';
+  static const String colorTitle = 'colorTitle';
+  static const String colorPickTitle = 'colorPickTitle';
+  static const String colorPickerHeader = 'colorPickerHeader';
+  static const String colorPickerSelect = 'colorPickerSelect';
+  static const String fontSizeTitle = 'fontSizeTitle';
+  static const String setDefaults = 'setDefaults';
 }

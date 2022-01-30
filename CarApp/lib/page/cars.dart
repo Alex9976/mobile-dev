@@ -21,10 +21,10 @@ class _CarPageState extends State<CarPage> {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: DataService.primaryColor,
         title: Text(
           LanguageConstants.carPageTitle.t(context),
-          style: TextStyle(
-              fontSize: fontProvider.fontSize),
+          style: TextStyle(fontSize: fontProvider.fontSize),
         ),
         actions: <Widget>[
           Padding(
@@ -48,69 +48,77 @@ class _CarPageState extends State<CarPage> {
             itemCount: cars.length,
             itemBuilder: (BuildContext context, int index) {
               return SizedBox(
-                height: 150,
-                child: Row(
-                  children: [
-                    const Padding(padding: EdgeInsets.only(left: 10)),
-                    SizedBox(
-                      width: 160,
-                      child: Image.network(cars[index].imagePath),
-                    ),
-                    Container(
-                      width: 220,
-                      padding: const EdgeInsets.only(
-                          left: 10, right: 0, top: 0, bottom: 0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            cars[index].name,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                                fontSize: fontProvider.fontSize,
-                                color: fontProvider.fontColor),
-                          ),
-                          const Padding(
-                              padding: EdgeInsets.only(
-                                  left: 0, right: 0, top: 10, bottom: 0)),
-                          Text(
-                            "${LanguageConstants.latLabel.t(context)}: ${cars[index].location.latitude}",
-                            style: TextStyle(
-                                fontSize: fontProvider.fontSize,
-                                color: fontProvider.fontColor),
-                          ),
-                          Text(
-                            "${LanguageConstants.lonLabel.t(context)}: ${cars[index].location.longitude}",
-                            style: TextStyle(
-                                fontSize: fontProvider.fontSize,
-                                color: fontProvider.fontColor),
-                          ),
-                          Visibility(
-                            child: Row(
-                              children: [
-                                Text(
-                                  "${cars[index].weather.temp.toString()} ℃",
-                                  style: TextStyle(
-                                      fontSize: fontProvider.fontSize,
-                                      color: fontProvider.fontColor),
-                                ),
-                                const Padding(
-                                    padding: EdgeInsets.only(
-                                        left: 0, right: 10, top: 0, bottom: 0)),
-                                Container(
-                                  width: 50,
-                                  padding: const EdgeInsets.all(2),
-                                  child: Image.network(
-                                      "http://openweathermap.org/img/wn/${cars[index].weather.icon}.png"),
-                                ),
-                              ],
-                            ),
-                            visible: cars[index].isWeatherLogged,
-                          ),
-                        ],
+                height: 140,
+                child: Center(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Spacer(),
+                      SizedBox(
+                        width: 160,
+                        child: Image.network(cars[index].imagePath),
                       ),
-                    ),
-                  ],
+                      const Spacer(),
+                      const Padding(padding: EdgeInsets.only(left: 5)),
+                      Container(
+                        width: 220,
+                        alignment: Alignment.centerLeft,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Spacer(),
+                            Text(
+                              cars[index].name,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                  fontSize: fontProvider.fontSize,
+                                  color: fontProvider.fontColor),
+                            ),
+                            const Padding(padding: EdgeInsets.only(top: 10)),
+                            Text(
+                              "${LanguageConstants.latLabel.t(context)}: ${cars[index].location.latitude}",
+                              style: TextStyle(
+                                  fontSize: fontProvider.fontSize,
+                                  color: fontProvider.fontColor),
+                            ),
+                            Text(
+                              "${LanguageConstants.lonLabel.t(context)}: ${cars[index].location.longitude}",
+                              style: TextStyle(
+                                  fontSize: fontProvider.fontSize,
+                                  color: fontProvider.fontColor),
+                            ),
+                            Visibility(
+                              child: Row(
+                                children: [
+                                  Text(
+                                    "${cars[index].weather.temp.toString()} ℃",
+                                    style: TextStyle(
+                                        fontSize: fontProvider.fontSize,
+                                        color: fontProvider.fontColor),
+                                  ),
+                                  const Padding(
+                                      padding: EdgeInsets.only(
+                                          left: 0,
+                                          right: 10,
+                                          top: 0,
+                                          bottom: 0)),
+                                  Container(
+                                    width: 50,
+                                    padding: const EdgeInsets.all(2),
+                                    child: Image.network(
+                                        "http://openweathermap.org/img/wn/${cars[index].weather.icon}.png"),
+                                  ),
+                                ],
+                              ),
+                              visible: cars[index].isWeatherLogged,
+                            ),
+                            const Spacer(),
+                          ],
+                        ),
+                      ),
+                      const Spacer(),
+                    ],
+                  ),
                 ),
               );
             }),

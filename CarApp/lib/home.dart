@@ -2,6 +2,7 @@ import 'package:carapp/extensions/string_extensions.dart';
 import 'package:carapp/page/cars.dart';
 import 'package:carapp/page/map.dart';
 import 'package:carapp/page/settings.dart';
+import 'package:carapp/services/DataService.dart';
 import 'package:carapp/services/FirebaseService.dart';
 import 'package:carapp/services/TextService.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +47,7 @@ class _HomePageState extends State<HomePage> {
     final fontProvider = Provider.of<TextService>(context);
 
     SystemChrome.setSystemUIOverlayStyle(
-        const SystemUiOverlayStyle(statusBarColor: Colors.blue));
+        const SystemUiOverlayStyle(statusBarColor: DataService.primaryColor));
 
     return Scaffold(
       body: PageStorage(

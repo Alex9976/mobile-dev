@@ -20,21 +20,22 @@ class AddCarPage extends StatefulWidget {
 class _AddCarPageState extends State<AddCarPage> {
   DataService appData = DataService();
 
-
   @override
   Widget build(BuildContext context) {
     final fontProvider = Provider.of<TextService>(context);
 
     return Scaffold(
       appBar: AppBar(
+          backgroundColor: DataService.primaryColor,
           title: Text(
-        LanguageConstants.addCarTitle.t(context),
-        style: TextStyle(
-            fontSize: fontProvider.fontSize),
-      )),
-      body: Container(
-        padding: const EdgeInsets.all(20),
-        child: const MyStatefulWidget(),
+            LanguageConstants.addCarTitle.t(context),
+            style: TextStyle(fontSize: fontProvider.fontSize),
+          )),
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.all(20),
+          child: const MyStatefulWidget(),
+        ),
       ),
     );
   }
@@ -127,13 +128,12 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               padding: const EdgeInsets.only(top: 20),
               child: MaterialButton(
                 textColor: Colors.white,
-                color: Colors.blue,
+                color: DataService.primaryColor,
                 onPressed: () => pickImage(),
                 child: Text(
                   LanguageConstants.selectImg.t(context),
                   style: TextStyle(
-                      fontSize: fontProvider.fontSize,
-                      color: fontProvider.fontColor),
+                      fontSize: fontProvider.fontSize, color: Colors.white),
                 ),
               ),
             ),
@@ -142,6 +142,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 10),
               child: ElevatedButton(
+                style:
+                    ElevatedButton.styleFrom(primary: DataService.primaryColor),
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     if (image == null) {
@@ -162,8 +164,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 child: Text(
                   LanguageConstants.submit.t(context),
                   style: TextStyle(
-                      fontSize: fontProvider.fontSize,
-                      color: fontProvider.fontColor),
+                      fontSize: fontProvider.fontSize, color: Colors.white),
                 ),
               ),
             ),
