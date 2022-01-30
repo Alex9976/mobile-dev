@@ -17,10 +17,9 @@ class AppData with ChangeNotifier {
 
   AppData._internal();
 
-  void setList() async {
+  void updateCarList() async {
     List<Car> cars = await FirebaseService.getCars();
     _cars = cars;
-    notifyListeners();
     updateWeather();
   }
 

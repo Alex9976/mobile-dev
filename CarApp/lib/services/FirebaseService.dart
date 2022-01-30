@@ -25,7 +25,7 @@ class FirebaseService {
     WidgetsFlutterBinding.ensureInitialized();
     await Firebase.initializeApp();
 
-    AppData().setList();
+    AppData().updateCarList();
   }
 
   static void addNewCar(

@@ -13,6 +13,6 @@ class Weather {
   }
 
   factory Weather.empty() {
-    return Weather(temp: 0, description: '', icon: '');
+    return Weather(temp: 0, description: '', icon: '01d');
   }
 }
