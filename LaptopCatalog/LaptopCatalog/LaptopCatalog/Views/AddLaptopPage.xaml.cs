@@ -24,6 +24,7 @@ namespace LaptopCatalog.Views
         public async void Close()
         {
             await Navigation.PopAsync();
+            MessagingCenter.Send(Application.Current.MainPage, "SetPage", null as object);
         }
     }
 }

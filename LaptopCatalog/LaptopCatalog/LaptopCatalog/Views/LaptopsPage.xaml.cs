@@ -11,7 +11,7 @@ namespace LaptopCatalog.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LaptopsPage : ContentPage
     {
-        public LaptopsPage(Laptop laptop, bool isListView)
+        public LaptopsPage(bool isListView)
         {
             var portaitLaptopsViewModel = new LaptopsViewModel(this, isListView);
             BindingContext = portaitLaptopsViewModel;
@@ -26,16 +26,23 @@ namespace LaptopCatalog.Views
             await Navigation.PushAsync(new LaptopPage(laptop, false));
         }
 
+        public async void OpenAddLaptop(AddLaptopPage page)
+        {
+            await Navigation.PushAsync(page);
+        }
+
         public async void OnItemClicked(object sender, ItemTappedEventArgs e)
         {
-            MessagingCenter.Send(Application.Current.MainPage, "SetLaptop", (Laptop)e.Item);
+            MessagingCenter.Send(Application.Current.MainPage, "SetPage", (Laptop)e.Item as object);
             await Navigation.PushAsync(new LaptopPage((Laptop)e.Item, false));
             ListOfLaptops.SelectedItem = null;
         }
 
         private async void AddLaptopClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new AddLaptopPage());
+            var page = new AddLaptopPage();
+            MessagingCenter.Send(Application.Current.MainPage, "SetPage", page as object);
+            await Navigation.PushAsync(page);
         }
 
         public void AddLaptopsToGrid(List<Laptop> laptops)
@@ -71,7 +78,7 @@ namespace LaptopCatalog.Views
             var firebaseDatebaseService = DependencyService.Get<IFirebaseDatebaseService>();
             var laptop = firebaseDatebaseService.GetLaptopById(((Button)sender).Text);
 
-            MessagingCenter.Send(Application.Current.MainPage, "SetLaptop", laptop);
+            MessagingCenter.Send(Application.Current.MainPage, "SetPage", laptop as object);
             await Navigation.PushAsync(new LaptopPage(laptop, false));
         }
 
@@ -82,6 +89,11 @@ namespace LaptopCatalog.Views
             {
                 MessagingCenter.Send(Application.Current.MainPage, "ChangePageToFlyout");  
             }
+        }
+
+        private void ToolbarItem_Clicked(object sender, EventArgs e)
+        {
+            MessagingCenter.Send(Application.Current.MainPage, "SetPage", null as object);
         }
     }
 }

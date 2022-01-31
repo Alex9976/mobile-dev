@@ -8,7 +8,7 @@ namespace LaptopCatalog
 {
     public partial class App : Application
     {
-        private Laptop _laptopId = null;
+        private object _page = null;
         private bool _listViewMode = true;
 
         public App()
@@ -19,23 +19,29 @@ namespace LaptopCatalog
             MessagingCenter.Subscribe<Page>(this, "ChangePageToLaptops",
                 (sender) =>
                 {
-                    var laptopPage = new LaptopsPage(_laptopId, _listViewMode);
+                    var laptopPage = new LaptopsPage(_listViewMode);
                     var page = new NavigationPage(laptopPage);
-                    if (_laptopId != null)
+                    if (_page != null)
                     {
-                        laptopPage.OpenLaptop(_laptopId);
+                        if (_page is Laptop)
+                        {
+                            laptopPage.OpenLaptop(_page as Laptop);
+                        }
+                        else if (_page is AddLaptopPage) {
+                            laptopPage.OpenAddLaptop(new AddLaptopPage());
+                        }
                     }
                     Current.MainPage = page;
                 });
             MessagingCenter.Subscribe<Page>(this, "ChangePageToFlyout",
                (sender) =>
                {
-                   Current.MainPage = new FlyoutMainPage(_laptopId);
+                   Current.MainPage = new FlyoutMainPage(_page);
                });
-            MessagingCenter.Subscribe<Page, Laptop>(this, "SetLaptop",
+            MessagingCenter.Subscribe<Page, object>(this, "SetPage",
                (sender, args) =>
                {
-                   _laptopId = args;
+                   _page = args;
                });
 
             MessagingCenter.Subscribe<Page, bool>(this, "SetListView",

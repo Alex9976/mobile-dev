@@ -14,17 +14,25 @@ namespace LaptopCatalog.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FlyoutMainPage : FlyoutPage
     {
-        public FlyoutMainPage(Laptop laptop)
+        public FlyoutMainPage(object page)
         {
             InitializeComponent();
             FlyoutPage.ListView.ItemSelected += ListView_ItemSelected;
 
-            if (laptop != null)
+            if (page != null)
             {
-                var page = new LaptopPage(laptop, true);
-                Detail = new NavigationPage(page);
-                IsPresented = false;
-                page.Title = laptop.Name;
+                if (page is Laptop)
+                {
+                    var laptopPage = new LaptopPage(page as Laptop, true);
+                    Detail = new NavigationPage(laptopPage);
+                    IsPresented = false;
+                    laptopPage.Title = (page as Laptop).Name;
+                } else if (page is AddLaptopPage)
+                {
+                    var addPage = new AddLaptopPage();
+                    addPage.Title = "Add laptop";
+                    Detail = new NavigationPage(addPage);
+                }
             }
         }
 
@@ -38,11 +46,12 @@ namespace LaptopCatalog.Views
             if (item.TargetType == "Laptop")
             {
                 page = new LaptopPage(item.Laptop, true);
-                MessagingCenter.Send(Application.Current.MainPage, "SetLaptop", item.Laptop);
+                MessagingCenter.Send(Application.Current.MainPage, "SetPage", item.Laptop as object);
             }
             if (item.TargetType == "Add")
             {
                 page = new AddLaptopPage();
+                MessagingCenter.Send(Application.Current.MainPage, "SetPage", page as object);
             }
             //var page = (Page)Activator.CreateInstance(item.TargetType);
             page.Title = item.Title;

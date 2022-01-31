@@ -30,6 +30,7 @@
                                 <RowDefinition Height="30" />
                                 <RowDefinition Height="30" />
                                 <RowDefinition Height="30" />
+                                <RowDefinition Height="30" />
                             </Grid.RowDefinitions>
                             <Label Text="Name:" Grid.Column="0" Grid.Row="0" HorizontalOptions="FillAndExpand" />
                             <Label Text="{Binding Name}" Grid.Column="1" Grid.Row="0" HorizontalOptions="FillAndExpand" />
@@ -55,14 +56,15 @@
                     </StackLayout>
                 </StackLayout>
 
-                <!--<StackLayout>
-                    <Label Text="Video" Margin="0, 0, 0, 20" FontSize="20" HorizontalOptions="Center" />
+                <StackLayout x:Name="videoStack">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Label Text="Video" FontSize="20" Padding="0, 10, 10, 0" HorizontalOptions="Center" />
+                        <Button Text="Load" CornerRadius="30" Clicked="Button_Clicked" HorizontalOptions="Center"/>
+                    </StackLayout>
                     <xct:MediaElement x:Name="player" 
-                                      AutoPlay="False" 
-                                      Margin="-40, 0, 0, 0" 
                                       HeightRequest="300"
                                       ShowsPlaybackControls="True"/>
-                </StackLayout>-->
+                </StackLayout>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

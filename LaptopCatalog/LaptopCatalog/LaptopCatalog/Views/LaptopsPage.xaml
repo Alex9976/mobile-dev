@@ -7,7 +7,7 @@
 
     <ContentPage.ToolbarItems>
         <ToolbarItem IconImageSource="icon_add.png" Clicked="AddLaptopClicked" />
-        <ToolbarItem IconImageSource="{Binding ViewIcon}" Command="{Binding ChangeView}" />
+        <ToolbarItem IconImageSource="{Binding ViewIcon}" Clicked="ToolbarItem_Clicked" Command="{Binding ChangeView}" />
     </ContentPage.ToolbarItems>
 
     <RefreshView x:Name="refreshView" IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshCommand}">
