@@ -20,37 +20,34 @@
     <Compile Update="Views\AddLaptopPage.xaml.cs">
       <DependentUpon>AddLaptopPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Portait\PortaitLaptopPage.xaml.cs">
-      <DependentUpon>PortaitLaptopPage.xaml</DependentUpon>
+    <Compile Update="Views\LaptopPage.xaml.cs">
+      <DependentUpon>LaptopPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Portait\PortaitLaptopsPage.xaml.cs">
-      <DependentUpon>PortaitLaptopsPage.xaml</DependentUpon>
+    <Compile Update="Views\LaptopsPage.xaml.cs">
+      <DependentUpon>LaptopsPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Views\Landscape\FlyoutMainPage.xaml">
+    <EmbeddedResource Update="Views\FlyoutMainPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Landscape\FlyoutMainPageDetail.xaml">
+    <EmbeddedResource Update="Views\FlyoutMainPageDetail.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Landscape\FlyoutMainPageFlyout.xaml">
+    <EmbeddedResource Update="Views\FlyoutMainPageFlyout.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Landscape\LandscapeLaptopPage.xaml.xaml">
+    <EmbeddedResource Update="Views\LaptopPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\AddLaptopPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Portait\PortaitLaptopPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Views\LoginPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Portait\PortaitLaptopsPage.xaml">
+    <EmbeddedResource Update="Views\LaptopsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\RegisterPage.xaml">

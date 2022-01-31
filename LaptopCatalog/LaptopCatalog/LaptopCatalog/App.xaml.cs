@@ -1,7 +1,5 @@
 ﻿using LaptopCatalog.Models;
 using LaptopCatalog.Views;
-using LaptopCatalog.Views.Landscape;
-using LaptopCatalog.Views.Portait;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -21,7 +19,7 @@ namespace LaptopCatalog
             MessagingCenter.Subscribe<Page>(this, "ChangePageToLaptops",
                 (sender) =>
                 {
-                    var laptopPage = new PortaitLaptopsPage(_laptopId, _listViewMode);
+                    var laptopPage = new LaptopsPage(_laptopId, _listViewMode);
                     var page = new NavigationPage(laptopPage);
                     if (_laptopId != null)
                     {

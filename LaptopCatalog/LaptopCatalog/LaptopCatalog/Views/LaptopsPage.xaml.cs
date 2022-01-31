@@ -23,13 +23,13 @@ namespace LaptopCatalog.Views
 
         public async void OpenLaptop(Laptop laptop)
         {
-            await Navigation.PushAsync(new PortaitLaptopPage(laptop));
+            await Navigation.PushAsync(new LaptopPage(laptop, false));
         }
 
         public async void OnItemClicked(object sender, ItemTappedEventArgs e)
         {
             MessagingCenter.Send(Application.Current.MainPage, "SetLaptop", (Laptop)e.Item);
-            await Navigation.PushAsync(new PortaitLaptopPage((Laptop)e.Item));
+            await Navigation.PushAsync(new LaptopPage((Laptop)e.Item, false));
             ListOfLaptops.SelectedItem = null;
         }
 
@@ -72,7 +72,7 @@ namespace LaptopCatalog.Views
             var laptop = firebaseDatebaseService.GetLaptopById(((Button)sender).Text);
 
             MessagingCenter.Send(Application.Current.MainPage, "SetLaptop", laptop);
-            await Navigation.PushAsync(new PortaitLaptopPage(laptop));
+            await Navigation.PushAsync(new LaptopPage(laptop, false));
         }
 
         protected override void OnSizeAllocated(double width, double height)

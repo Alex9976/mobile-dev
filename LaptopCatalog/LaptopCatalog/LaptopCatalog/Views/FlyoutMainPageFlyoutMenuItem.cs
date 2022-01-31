@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LaptopCatalog.Views.Landscape
+namespace LaptopCatalog.Views
 {
     public class FlyoutMainPageFlyoutMenuItem
     {

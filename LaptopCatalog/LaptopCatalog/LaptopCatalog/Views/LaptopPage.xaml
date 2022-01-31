@@ -4,11 +4,11 @@
              xmlns:xct="clr-namespace:Xamarin.CommunityToolkit.UI.Views;assembly=Xamarin.CommunityToolkit"
              BackgroundColor="{StaticResource Background}"
              Shell.FlyoutBehavior="Disabled"
-             x:Class="LaptopCatalog.Views.Landscape.LandscapeLaptopPage">
+             x:Class="LaptopCatalog.Views.LaptopPage">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Padding="20,10,20,10">
-                <StackLayout Orientation="Horizontal">
+                <StackLayout x:Name="stackLayout">
                     <Image x:Name="Image" 
                            Margin="0, 0, 20, 0"
                              WidthRequest="250" 

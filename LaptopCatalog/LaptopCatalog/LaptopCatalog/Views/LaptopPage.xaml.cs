@@ -3,16 +3,18 @@ using LaptopCatalog.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace LaptopCatalog.Views.Landscape
+namespace LaptopCatalog.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LandscapeLaptopPage : ContentPage
+    public partial class LaptopPage : ContentPage
     {
-        public LandscapeLaptopPage(Laptop laptop)
+        public LaptopPage(Laptop laptop, bool isLandscape)
         {
             var viewModel = new LaptopViewModel(laptop);
             BindingContext = viewModel;
             InitializeComponent();
+
+            stackLayout.Orientation = isLandscape ? StackOrientation.Horizontal : StackOrientation.Vertical;
 
             //player.Source = viewModel.VideoUrl;          
         }

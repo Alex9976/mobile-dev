@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace LaptopCatalog.Views.Landscape
+namespace LaptopCatalog.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FlyoutMainPage : FlyoutPage
@@ -21,7 +21,7 @@ namespace LaptopCatalog.Views.Landscape
 
             if (laptop != null)
             {
-                var page = new LandscapeLaptopPage(laptop);
+                var page = new LaptopPage(laptop, true);
                 Detail = new NavigationPage(page);
                 IsPresented = false;
                 page.Title = laptop.Name;
@@ -37,7 +37,7 @@ namespace LaptopCatalog.Views.Landscape
             var page = new Page();
             if (item.TargetType == "Laptop")
             {
-                page = new LandscapeLaptopPage(item.Laptop);
+                page = new LaptopPage(item.Laptop, true);
                 MessagingCenter.Send(Application.Current.MainPage, "SetLaptop", item.Laptop);
             }
             if (item.TargetType == "Add")

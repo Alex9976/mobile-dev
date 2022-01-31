@@ -1,19 +1,19 @@
 ﻿using LaptopCatalog.Models;
 using LaptopCatalog.Services;
-using LaptopCatalog.Views.Portait;
+using LaptopCatalog.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace LaptopCatalog.ViewModels.Portait
+namespace LaptopCatalog.ViewModels
 {
-    public class PortaitLaptopsViewModel : BaseViewModel
+    public class LaptopsViewModel : BaseViewModel
     {
         private bool _isListView;
         private bool _isRefreshing;
-        private PortaitLaptopsPage _page;
+        private LaptopsPage _page;
 
         public List<Laptop> Laptops { get; set; }
         public Command RefreshCommand { get; }
@@ -33,7 +33,7 @@ namespace LaptopCatalog.ViewModels.Portait
             }
         }
 
-        public PortaitLaptopsViewModel(PortaitLaptopsPage page, bool isListView)
+        public LaptopsViewModel(LaptopsPage page, bool isListView)
         {
             _page = page;
             _isListView = isListView;

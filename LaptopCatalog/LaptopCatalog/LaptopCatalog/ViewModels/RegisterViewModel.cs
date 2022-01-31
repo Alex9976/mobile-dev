@@ -3,7 +3,6 @@ using Xamarin.Forms;
 using LaptopCatalog.Models;
 using LaptopCatalog.Services;
 using LaptopCatalog.Views;
-using LaptopCatalog.Views.Portait;
 
 namespace LaptopCatalog.ViewModels
 {
