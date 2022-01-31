@@ -7,9 +7,9 @@ using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace LaptopCatalog.ViewModels.Landscape
+namespace LaptopCatalog.ViewModels
 {
-    public class LandscapeLaptopViewModel : BaseViewModel
+    public class LaptopViewModel : BaseViewModel
     {
         private readonly string _defaultViedoName = "https://firebasestorage.googleapis.com/v0/b/laptop-catalog.appspot.com/o/videos%2Fb5c3155e-c95d-4bda-a255-e10aa1382f33.mp4?alt=media&token=c8f38dde-8f3f-49da-a10f-3eaf00f05ab7";
 
@@ -29,7 +29,7 @@ namespace LaptopCatalog.ViewModels.Landscape
         public string VideoUrl { get; set; }
         public string VideoName { get; set; }
 
-        public LandscapeLaptopViewModel(Laptop laptop)
+        public LaptopViewModel(Laptop laptop)
         {
             Laptop = laptop;
 
@@ -40,7 +40,7 @@ namespace LaptopCatalog.ViewModels.Landscape
             ProcessorModel = Laptop.ProcessorModel;
             RamSize = Laptop.RamSize.ToString();
             RomSize = Laptop.RomSize.ToString();
-            Price = Laptop.Price.ToString(CultureInfo.InvariantCulture);
+            Price = $"$ {Laptop.Price.ToString(CultureInfo.InvariantCulture)}";
             ImageUrl = Laptop.Image.DownloadUrl;
             ImageName = Laptop.Image.FileName;
             if (Laptop.Video.DownloadUrl == "")

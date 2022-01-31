@@ -1,11 +1,5 @@
 ﻿using LaptopCatalog.Models;
-using LaptopCatalog.ViewModels.Landscape;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using LaptopCatalog.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -16,11 +10,11 @@ namespace LaptopCatalog.Views.Landscape
     {
         public LandscapeLaptopPage(Laptop laptop)
         {
-            var viewModel = new LandscapeLaptopViewModel(laptop);
+            var viewModel = new LaptopViewModel(laptop);
             BindingContext = viewModel;
             InitializeComponent();
 
-            player.Source = viewModel.VideoUrl;          
+            //player.Source = viewModel.VideoUrl;          
         }
     }
 }

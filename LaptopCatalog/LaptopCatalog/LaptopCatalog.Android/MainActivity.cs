@@ -15,7 +15,7 @@ namespace LaptopCatalog.Droid
         {
             base.OnCreate(savedInstanceState);
 
-            Window.SetStatusBarColor(Android.Graphics.Color.ParseColor("#181818"));
+            Window.SetStatusBarColor(Android.Graphics.Color.ParseColor("#78B2CA"));
 
             Xamarin.Forms.DependencyService.Register<FirebaseDatebaseService>();
             Xamarin.Forms.DependencyService.Register<FirebaseStorageService>();

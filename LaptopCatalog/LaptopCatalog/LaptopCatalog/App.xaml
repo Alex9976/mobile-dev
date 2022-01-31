@@ -4,11 +4,12 @@
              x:Class="LaptopCatalog.App">
     <Application.Resources>
         <ResourceDictionary>
-            <Color x:Key="Primary">#181818</Color>
-            <Color x:Key="Accent">#202020</Color>
+            <Color x:Key="Primary">#78B2CA</Color>
+            <Color x:Key="Accent">#FFFFFF</Color>
             <Color x:Key="Selected">#383838</Color>
-            <Color x:Key="Additional">#373737</Color>
-            <Color x:Key="Opposite">#FFFFFF</Color>
+            <Color x:Key="Additional">#575757</Color>
+            <Color x:Key="Opposite">#000000</Color>
+            <Color x:Key="Background">#FFFFFF</Color>
             <Style TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource Opposite}"/>
             </Style>
@@ -18,13 +19,13 @@
             </Style>
             <Style TargetType="Button">
                 <Setter Property="TextColor" Value="{StaticResource Opposite}"></Setter>
-                <Setter Property="BackgroundColor" Value="#FF9F5E"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource Primary}"/>
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
                         <VisualStateGroup x:Name="CommonStates">
                             <VisualState x:Name="Normal">
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="#FF9F5E" />
+                                    <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="Disabled">

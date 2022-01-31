@@ -17,11 +17,11 @@ namespace LaptopCatalog.Views
     {
         public PortaitLaptopPage(Laptop laptop)
         {
-            var viewModel = new PortaitLaptopViewModel(laptop);
+            var viewModel = new LaptopViewModel(laptop);
             BindingContext = viewModel;
             InitializeComponent();
 
-            player.Source = viewModel.VideoUrl;
+            //player.Source = viewModel.VideoUrl;
         }
     }
 }

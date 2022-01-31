@@ -2,11 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LaptopCatalog.Views.AddLaptopPage"
-             BackgroundColor="{StaticResource Primary}">
+             BackgroundColor="{StaticResource Background}">
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout Padding="20, 0, 20, 0" >
-                <Label Margin="0, 20, 0, 0" Text="Device info"  HorizontalOptions="Center"/>
+        <ScrollView VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
+            <StackLayout Margin="20" Padding="20, 0, 20, 0" BackgroundColor="{StaticResource Additional}">
+                <Label Margin="0, 20, 0, 0" Text="Device info" TextColor="{StaticResource Background}"  HorizontalOptions="Center"/>
                 <StackLayout Orientation="Vertical">
                     <Entry Text="{Binding Name}"
                            Placeholder="Name"
@@ -32,15 +32,15 @@
                 </StackLayout>
 
                 <StackLayout Margin="0, 20, 0, 0" Orientation="Horizontal" HorizontalOptions="Center">
-                    <Button Text="Select image" Command="{Binding AddImage}"/>
-                    <Button Text="Select video" Command="{Binding AddVideo}"/>
+                    <Button Text="Select image" CornerRadius="30" Command="{Binding AddImage}"/>
+                    <Button Text="Select video" CornerRadius="30" Command="{Binding AddVideo}"/>
                 </StackLayout>
 
                 <StackLayout Orientation="Vertical" Spacing="10">
                     <Button Text="Add" 
+                            CornerRadius="30"
                             Margin="0, 20, 0, 20"
-                            TextColor="White"
-                            HorizontalOptions="FillAndExpand"
+                            HorizontalOptions="Center"
                             Command="{Binding Save}"/>
                 </StackLayout>
             </StackLayout>

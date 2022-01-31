@@ -1,19 +1,19 @@
 ﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using LaptopCatalog.ViewModels.Portait;
+using LaptopCatalog.ViewModels;
 using LaptopCatalog.Models;
 using System.Collections.Generic;
 using System;
 using LaptopCatalog.Services;
 
-namespace LaptopCatalog.Views.Portait
+namespace LaptopCatalog.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PortaitLaptopsPage : ContentPage
+    public partial class LaptopsPage : ContentPage
     {
-        public PortaitLaptopsPage(Laptop laptop, bool isListView)
+        public LaptopsPage(Laptop laptop, bool isListView)
         {
-            var portaitLaptopsViewModel = new PortaitLaptopsViewModel(this, isListView);
+            var portaitLaptopsViewModel = new LaptopsViewModel(this, isListView);
             BindingContext = portaitLaptopsViewModel;
 
             InitializeComponent();

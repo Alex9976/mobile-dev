@@ -1,6 +1,5 @@
 ﻿using LaptopCatalog.Services;
 using LaptopCatalog.Views;
-using LaptopCatalog.Views.Portait;
 using System.Windows.Input;
 using Xamarin.Forms;
 
