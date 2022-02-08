@@ -22,5 +22,6 @@
   "colorPickerHeader": "Pick a color",
   "colorPickerSelect": "Select",
   "fontSizeTitle": "Font size",
-  "setDefaults": "Reset settings"
+  "setDefaults": "Reset settings",
+  "searchLabel": "Search"
 }

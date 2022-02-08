@@ -9,14 +9,21 @@ class DataService with ChangeNotifier {
   static final DataService _singleton = DataService._internal();
   static List<Car> _cars = <Car>[];
   static const primaryColor = Color(0xfff4793e);
+  static int _screenId = 0;
 
   static CameraPosition cameraPosition = const CameraPosition(
     target: LatLng(40, 20),
     zoom: 1,
   );
 
-  List<Car> get cars => _cars;
+  void setScreenId(int value)
+  {
+    _screenId = value;
+    notifyListeners();
+  }
 
+  List<Car> get cars => _cars;
+  int get screenId => _screenId;
   List<Marker> get markers => getMarkers();
 
   List<Marker> getMarkers() {

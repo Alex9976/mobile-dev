@@ -33,6 +33,7 @@ dev_dependencies:
   dio: ^4.0.4
   flutter_polyline_points: ^1.0.0
   google_maps_flutter: ^2.1.1
+  animated_splash_screen: ^1.1.0
   dropdown_button2: ^1.1.1
   flutter_colorpicker: ^1.0.3
   shared_preferences: ^2.0.12
@@ -49,6 +50,7 @@ flutter:
 
   assets:
     - assets/languages/
+    - assets/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

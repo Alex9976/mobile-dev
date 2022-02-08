@@ -25,4 +25,5 @@ class LanguageConstants {
   static const String colorPickerSelect = 'colorPickerSelect';
   static const String fontSizeTitle = 'fontSizeTitle';
   static const String setDefaults = 'setDefaults';
+  static const String searchLabel = 'searchLabel';
 }

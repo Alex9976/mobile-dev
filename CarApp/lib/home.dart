@@ -28,30 +28,24 @@ class _HomePageState extends State<HomePage> {
   ];
 
   final PageStorageBucket bucket = PageStorageBucket();
-  Widget currentScreen = const CarPage();
 
-  void _changePage(index) {
+  void changePage(index) {
     setState(() {
-      currentScreen = screens[index];
+      DataService().setScreenId(index);
     });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    FirebaseService.initFirebase();
   }
 
   @override
   Widget build(BuildContext context) {
     final fontProvider = Provider.of<TextService>(context);
+    final screenId = Provider.of<DataService>(context).screenId;
 
     SystemChrome.setSystemUIOverlayStyle(
         const SystemUiOverlayStyle(statusBarColor: DataService.primaryColor));
 
     return Scaffold(
       body: PageStorage(
-        child: currentScreen,
+        child: screens[screenId],
         bucket: bucket,
       ),
       bottomNavigationBar: Container(
@@ -66,6 +60,7 @@ class _HomePageState extends State<HomePage> {
             padding:
             const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
             child: GNav(
+              selectedIndex: screenId,
               rippleColor: Colors.grey[300]!,
               hoverColor: Colors.grey[100]!,
               gap: 8,
@@ -99,7 +94,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ],
               onTabChange: (index) {
-                _changePage(index);
+                changePage(index);
               },
             ),
           ),

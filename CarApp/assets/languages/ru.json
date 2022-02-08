@@ -22,5 +22,6 @@
   "colorPickerHeader": "Выберите цвет",
   "colorPickerSelect": "Выбрать",
   "fontSizeTitle": "Размер текста",
-  "setDefaults": "Сбросить настройки"
+  "setDefaults": "Сбросить настройки",
+  "searchLabel": "Поиск"
 }
