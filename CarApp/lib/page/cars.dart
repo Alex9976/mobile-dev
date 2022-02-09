@@ -19,6 +19,7 @@ class _CarPageState extends State<CarPage> {
   TextEditingController editingController = TextEditingController();
   final items = <Car>[];
   String query = "";
+  final textController = TextEditingController();
 
   void filterSearchResults(List<Car> cars) {
     if (query.isNotEmpty && query.length >= 3) {
@@ -77,23 +78,43 @@ class _CarPageState extends State<CarPage> {
           onRefresh: () async => {DataService().updateCarList()},
           child: Column(
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(
-                    top: 15, left: 8, right: 8, bottom: 5),
-                child: TextField(
-                  onChanged: (value) {
-                    query = value;
-                    filterSearchResults(cars);
-                  },
-                  controller: editingController,
-                  decoration: InputDecoration(
-                      hintText: LanguageConstants.searchLabel.t(context),
-                      prefixIcon: const Icon(Icons.search),
-                      border: const OutlineInputBorder(
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(15.0)))),
-                ),
+              const Padding(padding: EdgeInsets.only(top: 10)),
+              Row(
+                children: <Widget>[
+                  const Padding(padding: EdgeInsets.only(left: 10)),
+                  const Icon(Icons.search),
+                  Expanded(
+                    child: TextField(
+                      controller: textController,
+                      onChanged: (value) {
+                        query = value;
+                        filterSearchResults(cars);
+                      },
+                      cursorColor: Colors.black,
+                      keyboardType: TextInputType.text,
+                      textInputAction: TextInputAction.go,
+                      decoration: InputDecoration(
+                          border: InputBorder.none,
+                          contentPadding:
+                              const EdgeInsets.symmetric(horizontal: 15),
+                          hintText: LanguageConstants.searchLabel.t(context)),
+                    ),
+                  ),
+                  IconButton(
+                    splashColor: Colors.grey,
+                    icon: const Icon(Icons.clear),
+                    onPressed: () {
+                      setState(() {
+                        textController.clear();
+                        query = "";
+                        filterSearchResults(cars);
+                        FocusScope.of(context).unfocus();
+                      });
+                    },
+                  ),
+                ],
               ),
+              Padding(padding: EdgeInsets.only(top: 10)),
               Expanded(
                 child: ListView.builder(
                     itemCount: items.length,
