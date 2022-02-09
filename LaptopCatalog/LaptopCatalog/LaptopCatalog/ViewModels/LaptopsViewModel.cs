@@ -14,12 +14,13 @@ namespace LaptopCatalog.ViewModels
         private bool _isListView;
         private bool _isRefreshing;
         private LaptopsPage _page;
-        private FilterOptions _filterOptions;
+        public FilterOptions filterOptions;
 
         public List<Laptop> Laptops { get; set; }
         public List<Laptop> Items
         {
-            get => getFilterLaptops();
+            get { return getFilterLaptops(); }
+            set { Items = value; }
         }
         public Command RefreshCommand { get; }
         public Command ChangeView { get; }
@@ -42,7 +43,7 @@ namespace LaptopCatalog.ViewModels
         {
             _page = page;
             _isListView = isListView;
-            _filterOptions = new FilterOptions();
+            filterOptions = new FilterOptions();
 
             var firebaseDbService = DependencyService.Get<IFirebaseDatebaseService>();
 
@@ -95,21 +96,26 @@ namespace LaptopCatalog.ViewModels
         private List<Laptop> getFilterLaptops()
         {
             var CurrentList = new List<Laptop>(Laptops);
-            if (_filterOptions.ProcessorModel != null && _filterOptions.ProcessorModel.Length > 0)
-                CurrentList = Laptops.FindAll(x => x.ProcessorModel.ToLower().Contains(_filterOptions.ProcessorModel.ToLower()));
-            if (_filterOptions.MaxRamSize != 0)
-                CurrentList = Laptops.FindAll(x => x.RamSize <= _filterOptions.MaxRamSize);
-            CurrentList = Laptops.FindAll(x => x.RamSize >= _filterOptions.MinRamSize);
-            if (_filterOptions.MaxRomSize != 0)
-                CurrentList = Laptops.FindAll(x => x.RomSize <= _filterOptions.MaxRomSize);
-            CurrentList = Laptops.FindAll(x => x.RomSize >= _filterOptions.MinRomSize);
-            if (_filterOptions.MaxPrice != 0)
-                CurrentList = Laptops.FindAll(x => x.Price <= _filterOptions.MaxPrice);
-            CurrentList = Laptops.FindAll(x => x.Price >= _filterOptions.MinPrice);
-            if (_filterOptions.Type != null && _filterOptions.Type.Length > 0)
-                CurrentList = Laptops.FindAll(x => x.Type.ToLower().Contains(_filterOptions.Type.ToLower()));
-
+            if (filterOptions.ProcessorModel != null && filterOptions.ProcessorModel.Length > 0)
+                CurrentList = CurrentList.FindAll(x => x.ProcessorModel.ToLower().Contains(filterOptions.ProcessorModel.ToLower()));
+            if (filterOptions.MaxRamSize != 0)
+                CurrentList = CurrentList.FindAll(x => x.RamSize <= filterOptions.MaxRamSize);
+            CurrentList = CurrentList.FindAll(x => x.RamSize >= filterOptions.MinRamSize);
+            if (filterOptions.MaxRomSize != 0)
+                CurrentList = CurrentList.FindAll(x => x.RomSize <= filterOptions.MaxRomSize);
+            CurrentList = CurrentList.FindAll(x => x.RomSize >= filterOptions.MinRomSize);
+            if (filterOptions.MaxPrice != 0)
+                CurrentList = CurrentList.FindAll(x => x.Price <= filterOptions.MaxPrice);
+            CurrentList = CurrentList.FindAll(x => x.Price >= filterOptions.MinPrice);
+            if (filterOptions.Type != null && filterOptions.Type.Length > 0)
+                CurrentList = CurrentList.FindAll(x => x.Type.ToLower().Contains(filterOptions.Type.ToLower()));
+            
             return CurrentList;
         } 
+
+        public void UpdateFilter()
+        {
+            OnPropertyChanged("Items");
+        }
     }
 }

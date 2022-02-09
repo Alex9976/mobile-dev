@@ -11,9 +11,11 @@ namespace LaptopCatalog.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LaptopsPage : ContentPage
     {
+        LaptopsViewModel portaitLaptopsViewModel;
+
         public LaptopsPage(bool isListView)
         {
-            var portaitLaptopsViewModel = new LaptopsViewModel(this, isListView);
+            portaitLaptopsViewModel = new LaptopsViewModel(this, isListView);
             BindingContext = portaitLaptopsViewModel;
 
             InitializeComponent();
@@ -42,6 +44,13 @@ namespace LaptopCatalog.Views
         {
             var page = new AddLaptopPage();
             MessagingCenter.Send(Application.Current.MainPage, "SetPage", page as object);
+            await Navigation.PushAsync(page);
+        }
+
+        private async void FilterLaptopClicked(object sender, EventArgs e)
+        {
+            var page = new FilterPage(portaitLaptopsViewModel.filterOptions, portaitLaptopsViewModel);
+            MessagingCenter.Send(Application.Current.MainPage, "SetPage", null as object);
             await Navigation.PushAsync(page);
         }
 

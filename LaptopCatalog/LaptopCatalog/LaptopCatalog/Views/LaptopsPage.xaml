@@ -7,7 +7,7 @@
 
     <ContentPage.ToolbarItems>
         <ToolbarItem IconImageSource="icon_add.png" Clicked="AddLaptopClicked" />
-        <ToolbarItem IconImageSource="icon_filter.png" Clicked="AddLaptopClicked" />
+        <ToolbarItem IconImageSource="icon_filter.png" Clicked="FilterLaptopClicked" />
         <ToolbarItem IconImageSource="{Binding ViewIcon}" Clicked="ToolbarItem_Clicked" Command="{Binding ChangeView}" />
     </ContentPage.ToolbarItems>
 

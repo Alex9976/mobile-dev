@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LaptopCatalog.Views.FilterPage"
+             BackgroundColor="{StaticResource Background}">
+    <ContentPage.Content>
+        <ScrollView VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
+            <StackLayout Margin="20" Padding="20, 0, 20, 0" BackgroundColor="{StaticResource Additional}">
+                <Label Margin="0, 20, 0, 0" Text="Device info" TextColor="{StaticResource Background}"  HorizontalOptions="Center"/>
+                <StackLayout Orientation="Vertical">
+                    <Entry x:Name="Type"
+                           Placeholder="Type" 
+                           HorizontalOptions="FillAndExpand" />
+                    <Entry x:Name="ProcessorModel"
+                           Placeholder="Processor Model"
+                           HorizontalOptions="FillAndExpand" />
+                    <Entry x:Name="MinRamSize"
+                           Placeholder="Min Ram Size"
+                           HorizontalOptions="FillAndExpand" />
+                    <Entry x:Name="MaxRamSize"
+                           Placeholder="Max Ram Size"
+                           HorizontalOptions="FillAndExpand" />
+                    <Entry x:Name="MinRomSize"
+                           Placeholder="Min Rom Size"
+                           HorizontalOptions="FillAndExpand" />
+                    <Entry x:Name="MaxRomSize"
+                           Placeholder="Max Rom Size"
+                           HorizontalOptions="FillAndExpand" />
+                    <Entry x:Name="MinPrice"
+                           Placeholder="Min Price"
+                           HorizontalOptions="FillAndExpand" />
+                    <Entry x:Name="MaxPrice"
+                           Placeholder="Max Price"
+                           HorizontalOptions="FillAndExpand" />
+                </StackLayout>
+
+                <StackLayout Margin="0, 20, 0, 20" Orientation="Horizontal" HorizontalOptions="Center">
+                    <Button Text="Clear" CornerRadius="30" Clicked="Button_Clicked" />
+                    <Button Text="Apply" CornerRadius="30" Clicked="Button_Clicked_1" />
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
