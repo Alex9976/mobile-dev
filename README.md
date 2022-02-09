@@ -2,6 +2,9 @@
 
 - Application with launch screen and tab bar navigator. 
 - In the navigator 3 view: cars, map, settings. 
+- Search on car and map view. Options from 3 letters.
+- When you click on a car, you go to the map, camera centered on it.
+- An animation on the loading screen showing information about developer.
 - Map, with markers, each marker displays information when clicked in the form: car name, coordinates and weather value.
 - Settings, which include changing the font size and changing the font color and changing the language.
 - The weather data must be obtained through the Openweathermap API.
