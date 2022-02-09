@@ -24,13 +24,14 @@ namespace LaptopCatalog.Droid
         protected override void OnResume()
         {
             base.OnResume();
+            SetContentView(Resource.Layout.splash);
             Task startupWork = new Task(() => { SimulateStartup(); });
             startupWork.Start();
         }
 
         async void SimulateStartup()
         {
-            await Task.Delay(1000);
+            await Task.Delay(3000);
             StartActivity(new Intent(Application.Context, typeof(MainActivity)));
         }
     }
