@@ -5,6 +5,7 @@ import 'package:carapp/page/add_сar.dart';
 import 'package:carapp/services/DataService.dart';
 import 'package:carapp/services/TextService.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 
 class CarPage extends StatefulWidget {
@@ -99,9 +100,12 @@ class _CarPageState extends State<CarPage> {
                     itemBuilder: (BuildContext context, int index) {
                       return GestureDetector(
                         onTap: () => {
-                            DataService().setScreenId(1)
-
-
+                          DataService.cameraPosition = CameraPosition(
+                            target: LatLng(items[index].location.latitude,
+                                items[index].location.longitude),
+                            zoom: 11,
+                          ),
+                          DataService().setScreenId(1)
                         },
                         child: SizedBox(
                           height: 140,

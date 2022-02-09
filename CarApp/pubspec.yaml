@@ -43,6 +43,8 @@ dev_dependencies:
 flutter_native_splash:
   color: "#FFFFFF"
   image: assets/car_icon.png
+  branding: assets/brand.png
+  branding_mode: bottom
   android: true
 
 flutter:
