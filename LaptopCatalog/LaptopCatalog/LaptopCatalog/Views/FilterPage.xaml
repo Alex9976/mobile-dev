@@ -6,7 +6,7 @@
     <ContentPage.Content>
         <ScrollView VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
             <StackLayout Margin="20" Padding="20, 0, 20, 0" BackgroundColor="{StaticResource Additional}">
-                <Label Margin="0, 20, 0, 0" Text="Device info" TextColor="{StaticResource Background}"  HorizontalOptions="Center"/>
+                <Label Margin="0, 20, 0, 0" Text="Filter" TextColor="{StaticResource Background}"  HorizontalOptions="Center"/>
                 <StackLayout Orientation="Vertical">
                     <Entry x:Name="Type"
                            Placeholder="Type" 

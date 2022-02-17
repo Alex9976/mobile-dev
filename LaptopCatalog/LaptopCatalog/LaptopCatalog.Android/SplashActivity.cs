@@ -31,7 +31,7 @@ namespace LaptopCatalog.Droid
 
         async void SimulateStartup()
         {
-            await Task.Delay(3000);
+            await Task.Delay(2700);
             StartActivity(new Intent(Application.Context, typeof(MainActivity)));
         }
     }
